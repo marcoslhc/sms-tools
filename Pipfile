@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+matplotlib = "*"
+numpy = "<1.24"
+scipy = "*"
+ipython = "*"
+cython = "*"
+
+[dev-packages]
+ipykernel = "*"
+mypy = "*"
+autopep8 = "*"
+
+[requires]
+python_version = "3.8"
+python_full_version = "3.8.16"

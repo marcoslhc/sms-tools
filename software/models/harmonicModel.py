@@ -141,7 +141,7 @@ def harmonicModel(x, fs, w, N, t, nH, minf0, maxf0, f0et):
         hfreqp = hfreq
         # -----synthesis-----
         Yh = UF.genSpecSines(hfreq, hmag, hphase, Ns, fs)  # generate spec sines
-        fftbuffer = np.real(ifft(Yh))  # inverse FFT
+        fftbuffer = np.real(np.array(ifft(Yh)))  # inverse FFT
         yh[:hNs - 1] = fftbuffer[hNs + 1:]  # undo zero-phase window
         yh[hNs - 1:] = fftbuffer[:hNs + 1]
         y[pin - hNs:pin + hNs] += sw * yh  # overlap-add
@@ -191,6 +191,9 @@ def harmonicModelAnal(x, fs, w, N, H, t, nH, minf0, maxf0, f0et, harmDevSlope=0.
         hfreq, hmag, hphase = harmonicDetection(ipfreq, ipmag, ipphase, f0t, nH, hfreqp, fs,
                                                 harmDevSlope)  # find harmonics
         hfreqp = hfreq
+        xhfreq = np.array()
+        xhmag = np.array()
+        xhphase = np.array()
         if pin == hM1:  # first frame
             xhfreq = np.array([hfreq])
             xhmag = np.array([hmag])
